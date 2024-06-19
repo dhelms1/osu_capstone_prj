@@ -1,29 +1,23 @@
-# Validation
+# Abstract
+Temperature data is inherently error prone, with reliance on the accuracy of the
+sensors and continuous readings that fall within expected ranges. The Decision Aid
+System (DAS) is an online tool for pesticide management and recommendation
+that relies heavily on these temperature readings for horticulture models in order
+to correctly identify and provide diagnosis. It is essential that quality control is
+applied to these temperature readings to ensure that the real time recommendations
+by these models correctly reflect the current environment being read by these
+weather stations. In this paper, we develop and evaluate approaches to estimating
+the parameters of a quality control system based on historical data of a weather
+station. Through cross-validation, stations are evaluated on varying years of input
+data in order to determine the necessary amount of historical data to successfully
+integrate a new station into the system. Our results suggest that each parameter
+varies for the necessary amount of prior data to effectively apply quality control on
+future data, but never exceeds 5 years.
 
-The air temperature validation process on WSU-DAS consists in two steps:
-- check the **absolute value**, where the temperature is validated against a range of max/min values depending on the season
- (100F is plausible in summer, but not in winter) 
-- check **relative values**, that is the variation occurred compared to previous/following readings, identifying 
- anomalous spikes/dips of one or few consecutive records
+# Paper
+[Google Drive Link](https://drive.google.com/file/d/1Cd-ZBHgLttkCJZXGJc0E7HK4RGYuQHxZ/view?usp=drive_link)
 
-#### Flags
-
-- **missing**: temperature missing for the current timestamp
-- **too hot**: temperature exceeds an absolute max value, regardless of the date or time
-- **too cold**: temperature is lower than a min value (the threshold adjusts in summer) 
-- **too warm at night**: temperature exceeds a certain value between 22:00 and 10:00
-- **too hot early**: temperature exceeds a certain value in January-April
-- **too hot late**: temperature exceeds a certain value from mid-September to end of year
-- **no change**: no noticeable temperature change for 2 consecutive hours
-- **too small variation**: no significant variation in 2 hours time during the day in spring and summer
-- **spike/dip**: identifies dubious variations greater than a certain value (currently ~5˚F) between contiguous readings;
- e.g. one or more (up to 5) observations jumping up/down compared to the previous or the following records
-
-## Validation parameters
-
-Parameters to define for a more accurate, station-specific validation:
-- overall range: absolute max/min values (over the last 10 years?)
-- range: daily (weekly/monthly?) max/min values during the day and night
-- positive variation: max allowed increase between two consecutive observations
-- negative variation: max allowed decrease between two consecutive observations
-
+# Purpose
+This repository holds the code use to develop methods for automated quality control and estimates parameters for weather stations, discussed in the above paper.
+The code was developed privately, and now made public upon completion of the project. No data can be shared due to privacy agreements, but code does not
+reveal any information regarding what is protected. 
